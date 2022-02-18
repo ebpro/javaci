@@ -14,7 +14,7 @@ ENV MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 #ENV MAVEN_CLI_OPTS="-T 1C --settings /usr/share/maven/ref/settings-docker.xml -B"
 ENV MAVEN_CLI_OPTS="--settings /usr/share/maven/ref/settings-docker.xml -B"
 
-COPY settings-docker.xml /usr/share/maven/ref/
+COPY docker/settings-docker.xml /usr/share/maven/ref/
 
 # COPY pom.xml /app/pom.xml
 COPY .. /app/
