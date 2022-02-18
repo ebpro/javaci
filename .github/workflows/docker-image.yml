@@ -18,7 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Get Tag from Maven version
-      run: echo "TAG=$(docker run -v maven-repo:/root/.m2 -w /usr/src/mymaven -v ${PWD}:/usr/src/mymaven --rm maven:3.8.4-eclipse-temurin-17 mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec|sed s/-SNAPSHOT/.${GITHUB_RUN_NUMBER}/)" >> $GITHUB_ENV
+      run: echo "TAG=$(docker run -v maven-repo:/root/.m2 -w /usr/src/mymaven -v ${PWD}:/usr/src/mymaven --rm maven:3.8.4-eclipse-temurin-17 mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec|sed s/-SNAPSHOT/.${GITHUB_RUN_NUMBER}/)-${GITHUB_REF_NAME}" >> $GITHUB_ENV
     - name: Show tag
       run: echo $TAG
     - name: Build the Docker image for branch ${GITHUB_REF_NAME}
