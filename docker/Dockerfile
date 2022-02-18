@@ -23,11 +23,12 @@ RUN --mount=type=cache,id=mvncache,target=/root/.m2/repository,rw \
 	mvn $MAVEN_CLI_OPTS verify
 
 RUN --mount=type=cache,id=mvncache,target=/root/.m2/repository,rw \
-    if [ "$SONAR_TOKEN" ] ; then \
-      mvn $MAVEN_CLI_OPTS -D sonar.branch.name=${BRANCH} \
-        --activate-profiles sonar sonar:sonar && \
-      mvn $MAVEN_CLI_OPTS --activate-profiles sonar -pl . sonar-quality-gate:check ; \
-    fi
+    mvn $MAVEN_CLI_OPTS verify
+#    if [ "$SONAR_TOKEN" ] ; then \
+#      mvn $MAVEN_CLI_OPTS -D sonar.branch.name=${BRANCH} \
+#        --activate-profiles sonar sonar:sonar && \
+#      mvn $MAVEN_CLI_OPTS --activate-profiles sonar -pl . sonar-quality-gate:check ; \
+#    fi
 
 FROM eclipse-temurin:17.0.2_8-jre-alpine
 COPY --from=build /app/target/*one-jar.jar /app/myapp.jar
