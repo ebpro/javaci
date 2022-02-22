@@ -22,8 +22,8 @@ COPY .. /app/
 RUN --mount=type=cache,id=mvncache,target=/root/.m2/repository,rw \
 	mvn $MAVEN_CLI_OPTS verify
 
-RUN --mount=type=cache,id=mvncache,target=/root/.m2/repository,rw \
-    mvn $MAVEN_CLI_OPTS verify
+#RUN --mount=type=cache,id=mvncache,target=/root/.m2/repository,rw \
+#    mvn $MAVEN_CLI_OPTS verify
 #    if [ "$SONAR_TOKEN" ] ; then \
 #      mvn $MAVEN_CLI_OPTS -D sonar.branch.name=${BRANCH} \
 #        --activate-profiles sonar sonar:sonar && \
